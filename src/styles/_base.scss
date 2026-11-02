@@ -1,0 +1,90 @@
+@use 'sass:map';
+
+$violet: #271c47;
+$blue: #3442b5;
+$link-blue: #3019b2;
+$yellow: #f7ca11;
+$gray: #9f9f9f;
+$text: #3f3f40;
+$container: 1280px;
+
+$faces: (
+  'Outfit:SemiBold': ('https://static.figma.com/font/Outfit_wght__2', 600),
+  'Poppins:Black': ('https://static.figma.com/font/Poppins-Black_4', 900),
+  'Poppins:Bold': ('https://static.figma.com/font/Poppins-Bold_6', 700),
+  'Poppins:Light': ('https://static.figma.com/font/Poppins-Light_6', 300),
+  'Poppins:Medium': ('https://static.figma.com/font/Poppins-Medium_6', 500),
+  'Poppins:Regular': ('https://static.figma.com/font/Poppins-Regular_6', 400),
+  'Poppins:SemiBold': ('https://static.figma.com/font/Poppins-SemiBold_6', 600),
+  'Work Sans:Medium': ('https://static.figma.com/font/WorkSans_wght__2', 500),
+  'Work Sans:Regular': ('https://static.figma.com/font/WorkSans_wght__2', 400),
+  'Work Sans:SemiBold': ('https://static.figma.com/font/WorkSans_wght__2', 600),
+);
+
+@each $name, $spec in $faces {
+  @font-face {
+    font-family: '#{$name}';
+    src: url('#{nth($spec, 1)}') format('woff2');
+    font-weight: nth($spec, 2);
+    font-style: normal;
+    font-display: swap;
+  }
+}
+
+/// Applies one imported face ("Poppins:Bold") with its matching weight.
+@mixin font($name) {
+  font-family: '#{$name}', sans-serif;
+  font-weight: nth(map.get($faces, $name), 2);
+  font-style: normal;
+}
+
+@mixin container {
+  width: $container;
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  color: $text;
+  @include font('Poppins:Regular');
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+img {
+  display: block;
+}
+
+.status {
+  margin-top: 90px;
+  text-align: center;
+  color: $gray;
+}

@@ -1,0 +1,10 @@
+{
+  "description": "Browse a product showcase with key details for each item in an interactive modal, making it easy for shoppers to explore products.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

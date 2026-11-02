@@ -1,0 +1,190 @@
+@use 'base' as *;
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.54);
+  animation: fade 0.2s ease;
+}
+
+.modal {
+  position: relative;
+  width: 769px;
+  max-width: 100%;
+  min-height: 299.26px;
+  border-radius: 6px;
+  background: #fff;
+  animation: pop 0.2s ease;
+
+  &__close {
+    position: absolute;
+    right: 29px;
+    top: 17px;
+    width: 15px;
+    height: 15px;
+
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      left: -2px;
+      top: 6.5px;
+      width: 19px;
+      height: 2px;
+      background: #707070;
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
+
+  &__photo {
+    position: absolute;
+    left: 55px;
+    top: 58px;
+    width: 246px;
+    height: 193px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  &__info {
+    margin-left: 390px;
+    padding: 63px 0 38px;
+    width: 328px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  &__head {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    font-size: 20px;
+    line-height: 1;
+    letter-spacing: 1px;
+
+    h2 {
+      font-size: 20px;
+      text-transform: uppercase;
+      @include font('Poppins:Regular');
+    }
+  }
+
+  &__price {
+    @include font('Poppins:SemiBold');
+  }
+
+  &__desc {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    width: 290px;
+    max-width: 100%;
+
+    p {
+      font-size: 10px;
+      line-height: 1.505;
+      letter-spacing: 0.5px;
+      color: $gray;
+      @include font('Work Sans:Medium');
+    }
+
+    a {
+      font-size: 11px;
+      line-height: 1;
+      letter-spacing: 0.55px;
+      color: $blue;
+      @include font('Work Sans:SemiBold');
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  &__qty {
+    width: 110px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 9px;
+    border: 1px solid #d9d9d9;
+    border-radius: 4px;
+    background: #fff;
+    color: $violet;
+    font-size: 16px;
+    @include font('Poppins:Medium');
+
+    button {
+      width: 20px;
+      height: 20px;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+
+      &:disabled {
+        opacity: 0.4;
+        cursor: default;
+      }
+    }
+  }
+
+  &__buy {
+    width: 188px;
+    height: 36px;
+    border-radius: 6px;
+    background: $yellow;
+    color: $violet;
+    font-size: 14px;
+    text-transform: uppercase;
+    @include font('Poppins:Bold');
+  }
+}
+
+@media (max-width: 800px) {
+  .modal {
+    &__photo {
+      position: static;
+      width: 100%;
+      height: 200px;
+      padding: 40px 16px 0;
+    }
+
+    &__info {
+      margin-left: 0;
+      padding: 24px 24px 32px;
+      width: 100%;
+    }
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}

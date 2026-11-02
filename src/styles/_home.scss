@@ -1,0 +1,502 @@
+@use 'base' as *;
+
+.hero {
+  position: relative;
+  height: 390px;
+  overflow: hidden;
+  background: #111;
+
+  &__bg {
+    position: absolute;
+    left: -0.06%;
+    top: -269.7px;
+    width: 125%;
+    min-width: 1800px;
+    height: 1200px;
+    object-fit: fill;
+  }
+
+  &__shade {
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 966px;
+    max-width: 100%;
+    opacity: 0.8;
+    background: linear-gradient(to left, rgba(0, 0, 0, 0), #000 85.039%);
+  }
+
+  &__content {
+    @include container;
+    position: relative;
+    height: 100%;
+    padding-left: 1px;
+    color: #fff;
+
+    h1 {
+      position: absolute;
+      left: 1px;
+      top: 79px;
+      width: 822px;
+      max-width: 100%;
+      font-size: 48px;
+      line-height: 50px;
+      @include font('Poppins:SemiBold');
+    }
+
+    p {
+      position: absolute;
+      left: -2px;
+      top: 196px;
+      font-size: 32px;
+      white-space: nowrap;
+
+      strong {
+        color: $yellow;
+        @include font('Poppins:Bold');
+      }
+    }
+  }
+
+  &__cta {
+    position: absolute;
+    left: 7px;
+    top: 285px;
+    width: 206px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    background: $yellow;
+    color: $violet;
+    font-size: 16px;
+    @include font('Poppins:SemiBold');
+  }
+}
+
+.categories {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 42px;
+  margin-top: 39px;
+  padding-right: 2px; // design list starts 0.5px left of center
+
+  &__item {
+    // Items are 128px wide (Bebidas: 140px); the label offset comes from the design.
+    position: relative;
+    width: var(--item-w, 128px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+    font-size: 14px;
+    color: #4e4e4e;
+    @include font('Poppins:Medium');
+  }
+
+  &__box {
+    margin-left: var(--box-ml, 0);
+    width: 128px;
+    height: 128px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: #f4f4f4;
+    box-shadow: 0 4px 11px rgba(0, 0, 0, 0.13);
+
+    img {
+      width: 61px;
+      height: 61px;
+      object-fit: cover;
+    }
+  }
+
+  &__label {
+    margin-left: var(--label-ml, 0);
+    width: var(--label-w, auto);
+    text-align: var(--label-align, left);
+    line-height: 21px;
+    white-space: nowrap;
+  }
+
+  &__item.is-active {
+    color: $link-blue;
+    @include font('Poppins:SemiBold');
+
+    .categories__box {
+      background: #fff;
+      box-shadow: 0 2px 9px rgba(0, 0, 0, 0.22);
+    }
+  }
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 34px;
+  max-width: 100%;
+  position: relative;
+  left: -1.5px;
+
+  h2 {
+    font-size: 30px;
+    line-height: 45px;
+    white-space: nowrap;
+    color: $blue;
+    @include font('Poppins:Bold');
+  }
+
+  img {
+    width: 360px;
+    height: 1px;
+    flex: 0 1 360px;
+    min-width: 0;
+  }
+}
+
+.showcase {
+  margin-top: 90px;
+
+  &__tabs {
+    @include container;
+    position: relative;
+    left: -1px;
+    display: flex;
+    margin-top: 4px;
+    margin-bottom: 24px;
+
+    button {
+      flex: 1 0 0;
+      min-width: 1px;
+      height: 40px;
+      margin-right: -1px;
+      padding: 12px 8px;
+      border: 1px solid #bdbdbd;
+      background: #fff;
+      color: #3b3b3b;
+      font-size: 16px;
+      line-height: 16px;
+      text-transform: uppercase;
+      @include font('Poppins:Regular');
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      &.is-active {
+        color: $blue;
+        @include font('Poppins:Bold');
+      }
+    }
+  }
+
+  &__all {
+    display: block;
+    width: max-content;
+    margin: 5px auto 23.5px;
+    position: relative;
+    left: -1px;
+    font-size: 15px;
+    line-height: 22.5px;
+    @include font('Poppins:Bold');
+  }
+
+  &__carousel {
+    --card-w: 304px;
+    --card-gap: 18px;
+    position: relative;
+    width: calc(var(--card-w) * 4 + var(--card-gap) * 3);
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  &__viewport {
+    // Room for the card drop shadow without clipping it.
+    margin: -20px;
+    padding: 20px;
+    overflow: hidden;
+  }
+
+  &__track {
+    display: flex;
+    gap: var(--card-gap);
+    transition: transform 0.35s ease;
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 246px;
+    width: 32px;
+    height: 32px;
+
+    img {
+      // The asset carries its own drop shadow: 40px canvas around the 32px disc.
+      width: 40px;
+      height: 40px;
+      margin-left: -4px;
+      max-width: none;
+    }
+
+    &--prev {
+      left: -47px;
+    }
+
+    &--next {
+      right: -47px;
+    }
+
+  }
+}
+
+.card {
+  position: relative;
+  flex: 0 0 var(--card-w);
+  height: 500px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 3px 19px rgba(0, 0, 0, 0.22);
+  cursor: pointer;
+  color: $text;
+
+  > * {
+    position: absolute;
+    left: 12.39px;
+    width: 275.85px;
+  }
+
+  &__photo {
+    top: 32px;
+    width: 278px;
+    height: 228px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  }
+
+  &__desc {
+    top: 269px;
+    font-size: 15px;
+    line-height: 22.5px;
+    max-height: 45px;
+    overflow: hidden;
+    @include font('Poppins:Light');
+  }
+
+  &__price {
+    top: 353px;
+    font-size: 20px;
+    line-height: 30px;
+    @include font('Poppins:Bold');
+  }
+
+  &__installment {
+    top: 385px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  &__shipping {
+    top: 410px;
+    font-size: 12px;
+    line-height: 18px;
+    color: $blue;
+  }
+
+  &__buy {
+    top: 440px;
+    height: 44px;
+    border-radius: 4px;
+    background: $blue;
+    color: #fff;
+    font-size: 14px;
+    text-transform: uppercase;
+    @include font('Poppins:Bold');
+  }
+}
+
+.partners {
+  @include container;
+  display: flex;
+  gap: 13px;
+  margin-top: 90px;
+  position: relative;
+  left: -1px;
+
+  & + .showcase + & {
+    margin-top: 91px;
+  }
+
+  &__banner {
+    position: relative;
+    flex: 0 0 634px;
+    height: 350px;
+    border-radius: 20px;
+    overflow: hidden;
+    color: #fff;
+
+    img {
+      position: absolute;
+      left: -99.41px;
+      top: -45px;
+      width: 831.71px;
+      height: 503px;
+      max-width: none;
+      object-fit: cover;
+    }
+
+    h3 {
+      position: absolute;
+      left: 44px;
+      top: 114px;
+      font-size: 40px;
+      @include font('Poppins:Bold');
+    }
+
+    p {
+      position: absolute;
+      left: 44px;
+      top: 182px;
+      width: 200px;
+      font-size: 16px;
+    }
+
+    a {
+      position: absolute;
+      left: 44px;
+      top: 262px;
+      width: 145px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      background: $yellow;
+      color: $violet;
+      font-size: 16px;
+      letter-spacing: 1.28px;
+      text-transform: uppercase;
+      @include font('Poppins:Bold');
+    }
+  }
+
+  &__shade {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 261px;
+    opacity: 0.8;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0), #000 85.039%);
+  }
+}
+
+.brands {
+  margin-top: 90px;
+
+  h2 {
+    text-align: center;
+    font-size: 30px;
+    line-height: 45px;
+    color: $blue;
+    @include font('Poppins:Bold');
+  }
+
+  &__list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 42px;
+    margin-top: 32px;
+    padding-right: 16px; // design row sits 8px left of center
+    position: relative;
+    top: -1px;
+  }
+
+  &__item {
+    width: 211px;
+    height: 211px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #fff;
+    filter: drop-shadow(0 7px 10px rgba(0, 0, 0, 0.13));
+
+    img {
+      width: 117px;
+      height: 34.76px;
+    }
+  }
+}
+
+#vitrine .section-title {
+  left: -2.5px;
+}
+
+// In the design, the cards of the 2nd/3rd showcase carry their content 1px lower.
+.showcase:not(#vitrine) .card > * {
+  transform: translateY(1px);
+}
+
+main {
+  padding-bottom: 91px;
+}
+
+@media (max-width: 1360px) {
+  .showcase {
+    &__carousel {
+      width: 100%;
+      padding-inline: 16px;
+    }
+
+    &__viewport {
+      overflow-x: auto;
+      scroll-snap-type: x proximity;
+    }
+
+    &__track {
+      transform: none !important;
+    }
+
+    &__arrow {
+      display: none;
+    }
+  }
+
+  .partners {
+    padding-inline: 16px;
+    overflow-x: auto;
+
+    &__banner {
+      flex-shrink: 0;
+    }
+  }
+}
+
+@media (max-width: 900px) {
+  .hero {
+    &__content h1 {
+      font-size: 32px;
+      line-height: 36px;
+      padding-right: 16px;
+    }
+
+    &__content p {
+      font-size: 22px;
+    }
+
+    &__cta {
+      top: 300px;
+    }
+  }
+
+  .section-title img {
+    display: none;
+  }
+}

@@ -1,0 +1,230 @@
+@use 'base' as *;
+
+.newsletter {
+  height: 162px;
+  background: $violet;
+  color: #fff;
+
+  &__inner {
+    @include container;
+    position: relative;
+    height: 100%;
+  }
+
+  &__text {
+    position: absolute;
+    left: -0.5px;
+    top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    h2 {
+      width: 463px;
+      font-size: 32px;
+      line-height: 1.2;
+      @include font('Outfit:SemiBold');
+    }
+
+    p {
+      width: 515px;
+      font-size: 14px;
+      line-height: 18px;
+      @include font('Poppins:Light');
+    }
+  }
+
+  &__form {
+    position: absolute;
+    left: 638.5px;
+    top: 44.5px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+
+    input[type='text'],
+    input[type='email'] {
+      width: 233px;
+      height: 44px;
+      padding: 12px 24px;
+      border: 1px solid #e7e7e7;
+      border-radius: 8px;
+      background: #fff;
+      outline: none;
+      font-size: 14px;
+      line-height: 18px;
+      color: #333;
+      @include font('Poppins:Regular');
+
+      &::placeholder {
+        color: #676767;
+        opacity: 1;
+      }
+    }
+
+    button {
+      height: 44px;
+      padding: 0 40px;
+      border-radius: 8px;
+      background: $yellow;
+      color: #161615;
+      font-size: 14px;
+      @include font('Poppins:SemiBold');
+    }
+
+    label {
+      flex-basis: 100%;
+      margin: -1px 0 0 1px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 14px;
+      line-height: 21px;
+      cursor: pointer;
+    }
+
+    input[type='checkbox'] {
+      appearance: none;
+      flex: none;
+      width: 15px;
+      height: 15px;
+      margin: 0;
+      border: 1px solid #8c342b;
+      border-radius: 1px;
+      background: #f6f6f6;
+
+      &:checked {
+        background: #f6f6f6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 13'%3E%3Cpath d='M2.5 6.8l2.6 2.6 5.4-5.8' fill='none' stroke='%238c342b' stroke-width='1.6'/%3E%3C/svg%3E") center / 13px no-repeat;
+      }
+    }
+  }
+}
+
+.footer {
+  background: #f4f4f4;
+
+  &__inner {
+    @include container;
+    display: flex;
+    align-items: center;
+    gap: 90px;
+    padding: 42px 0;
+  }
+
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+
+    > img:first-child {
+      width: 164px;
+      height: 48px;
+    }
+
+    p {
+      width: 354px;
+      max-width: 100%;
+      font-size: 14px;
+      @include font('Poppins:Light');
+    }
+  }
+
+  &__social {
+    display: flex;
+    gap: 26px;
+    margin-top: 9px;
+
+    img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+
+  &__divider {
+    width: 2px;
+    height: 198px;
+    flex: none;
+    margin-left: -1px;
+  }
+
+  &__columns {
+    display: flex;
+    gap: 100px;
+    color: rgba(34, 34, 34, 0.71);
+    white-space: nowrap;
+    margin-left: -2px;
+  }
+
+  &__col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    font-size: 14px;
+    line-height: 16px;
+    @include font('Work Sans:Regular');
+
+    h4 {
+      margin-bottom: 4px;
+      font-size: 16px;
+      @include font('Poppins:Bold');
+    }
+
+    &--poppins {
+      @include font('Poppins:Regular');
+    }
+  }
+
+  &__copy {
+    height: 46.84px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2px 2px 0 0;
+    background: #fff;
+    font-size: 13px;
+    color: $text;
+    @include font('Poppins:Light');
+  }
+}
+
+@media (max-width: 1340px) {
+  .newsletter__inner,
+  .footer__inner {
+    padding-inline: 16px;
+  }
+
+  .newsletter {
+    height: auto;
+    padding: 32px 0;
+
+    &__inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px 48px;
+    }
+
+    &__text,
+    &__form {
+      position: static;
+    }
+
+    &__text h2,
+    &__text p {
+      width: auto;
+    }
+  }
+
+  .footer__inner {
+    flex-wrap: wrap;
+    gap: 32px 60px;
+  }
+
+  .footer__divider {
+    display: none;
+  }
+
+  .footer__columns {
+    flex-wrap: wrap;
+    gap: 32px 60px;
+  }
+}
